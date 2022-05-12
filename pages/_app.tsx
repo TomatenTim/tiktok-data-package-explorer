@@ -17,7 +17,8 @@ function App({ Component, pageProps }: AppProps) {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar />
-      {/* Content hidden behind navbar */}
+      {/* TODO: fix size on PC / errors on start */}
+      <div style={theme.mixins.toolbar}></div>
       <Component {...pageProps} />
     </ThemeProvider>
   );
