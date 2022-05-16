@@ -1,4 +1,5 @@
-import { AppBar, Toolbar, Typography } from '@mui/material'
+import { AppBar, Box, Toolbar, Typography } from '@mui/material'
+import LanguageChangeButton from './LanguageChangeButton'
 
 
 export default function Navbar() {
@@ -23,6 +24,10 @@ export default function Navbar() {
           >
             TDPE
           </Typography>
+
+          <Box sx={{ flexGrow: 1 }} />
+
+          <LanguageChangeButton />
         </Toolbar>
       </AppBar>
     </>

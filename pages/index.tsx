@@ -25,22 +25,27 @@ const Home: NextPage = () => {
             maxWidth: '1000px',
             width: '75vw',
 
-            display: 'flex',
-            justifyContent: 'center',
-
             background: theme.palette.grey[900],
           }}
         >
-          <Typography variant='h5'>
+          <Typography 
+            variant='h5' 
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
             TikTok Data Package Explorer
           </Typography>
-          <br></br>
-          
 
+
+
+          hi 
         </Box>
 
+
       </Box>
-      
+
       {t('helloWorld')}
 
     </>
