@@ -1,14 +1,13 @@
 
-import { Grid, ThemeProvider, Typography, useTheme } from '@mui/material'
+import { Typography, useTheme } from '@mui/material'
 import { Box } from '@mui/system'
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import useTranslation from 'next-translate/useTranslation'
 
 const Home: NextPage = () => {
 
   const theme = useTheme();
+  const { t } = useTranslation('common');
 
   return (
     <>
@@ -28,9 +27,7 @@ const Home: NextPage = () => {
 
             display: 'flex',
             justifyContent: 'center',
-          }}
 
-          style={{
             background: theme.palette.grey[900],
           }}
         >
@@ -44,6 +41,7 @@ const Home: NextPage = () => {
 
       </Box>
       
+      {t('helloWorld')}
 
     </>
   )
