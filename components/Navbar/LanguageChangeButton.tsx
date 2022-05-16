@@ -3,7 +3,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import { ReactElement, useState } from "react";
 import Link from "next/link";
-
+import Flag from 'react-world-flags'
 import i18nConfig from '../../i18n';
 
 export default function LanguageChangeButton() {
@@ -57,11 +57,22 @@ function LanguageMenuItems() {
 
   return (
     <>
-      {languages.map((lang) => 
+      {languages.map((lang) =>
         <Link href="#" locale={lang} key={lang}>
-          <MenuItem>{lang}</MenuItem>
+          <MenuItem sx={{width: '75px'}}>
+            <Flag code={languageToCountry(lang)} fallback={lang.toUpperCase()} style={{ borderRadius: 5 }} />
+            {/* {lang} */}
+          </MenuItem>
         </Link>
       )}
     </>
   );
+}
+
+// TODO: search lib or move to own file
+function languageToCountry(lang:string):string|undefined {
+  return {
+    de: 'de',
+    en: 'us'
+  }[lang]
 }
