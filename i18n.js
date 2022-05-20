@@ -4,6 +4,7 @@ module.exports = {
   localesToIgnore: ['__default'],
   pages: {
     '*': ['common'],
+    '/': ['index']
   },
   interpolation: {
     prefix: '${',
