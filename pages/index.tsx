@@ -81,7 +81,7 @@ const Home: NextPage = () => {
             sx={sxPropsCenter}
           >
             <Badge
-              badgeContent={t('step1')}
+              badgeContent={1}
               {...badgeProps}
             >
               {t('downloadDataPackageInfoText')}<br/>
@@ -97,7 +97,7 @@ const Home: NextPage = () => {
             sx={sxPropsCenter}
           >
             <Badge
-              badgeContent={t('step2')}
+              badgeContent={2}
               {...badgeProps}
             >
               <DragAndDropInput />
