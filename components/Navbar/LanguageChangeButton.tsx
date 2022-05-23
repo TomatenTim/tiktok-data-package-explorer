@@ -59,8 +59,8 @@ function LanguageMenuItems() {
     <>
       {languages.map((lang) =>
         <Link href="#" locale={lang} key={lang}>
-          <MenuItem sx={{width: '75px'}}>
-            <Flag code={languageToCountry(lang)} fallback={lang.toUpperCase()} style={{ borderRadius: 5 }} />
+          <MenuItem sx={{ width: '75px' }}>
+            <Flag code={languageToCountry(lang)} fallback={lang.toUpperCase()} style={{ borderRadius: 5, width: '100%' }} />
             {/* {lang} */}
           </MenuItem>
         </Link>
@@ -70,7 +70,7 @@ function LanguageMenuItems() {
 }
 
 // TODO: search lib or move to own file
-function languageToCountry(lang:string):string|undefined {
+function languageToCountry(lang: string): string | undefined {
   return {
     de: 'de',
     en: 'us'
