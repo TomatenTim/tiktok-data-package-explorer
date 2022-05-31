@@ -1,6 +1,7 @@
 import { Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
 import { useDropzone } from "react-dropzone";
+import readUserDataFromZip from "../libs/readUserDataFromZip";
 
 
 export default function DragAndDropInput() {
@@ -15,9 +16,13 @@ export default function DragAndDropInput() {
     },
     maxFiles: 1,
     onDrop(acceptedFiles, fileRejections, event) {
-      console.log(acceptedFiles);
-      console.log(fileRejections);
-      console.log(event);
+      acceptedFiles.forEach(async (file, index) => {
+        console.log(file);
+        console.log(index);
+
+        const userData = await readUserDataFromZip(file);
+        console.log(userData);
+      })
     }
   })
 
