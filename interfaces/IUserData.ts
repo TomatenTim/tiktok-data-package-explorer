@@ -59,7 +59,7 @@ interface IHistoryLogins {
   date?: Date;
   ip?: string;
   deviceModel?: string;
-  deviceSystem?: string;
+  deviceOS?: string;
   networkType?: string;
   carrier?: string;
 }
@@ -151,7 +151,7 @@ interface IProfile {
   username?: string;
   bio?: string;
   email?: string;
-  birthdate?: Date;
+  birthday?: Date;
   profilePictureUrl?: string;
   profileVideoUrl?: string;
   phoneNumber?: string;
