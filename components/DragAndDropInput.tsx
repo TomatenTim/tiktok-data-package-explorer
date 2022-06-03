@@ -1,17 +1,20 @@
 import { Typography, useTheme } from "@mui/material";
 import useTranslation from "next-translate/useTranslation";
-import { useState } from "react";
+import Router from "next/router";
 import { useDropzone } from "react-dropzone";
 import readUserDataFromZip from "../libs/readUserDataFromZip";
+import { useUserData } from "../stores/userData";
 
 
 export default function DragAndDropInput() {
 
-  const [data, setData] = useState<Object>({});
-
   const theme = useTheme();
   const { t } = useTranslation('index');
-  
+
+  // global UserData store
+  const setUserData = useUserData(state => state.setUserData);
+
+
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     accept: {
       'application/json': [],
@@ -26,10 +29,13 @@ export default function DragAndDropInput() {
         const userData = await readUserDataFromZip(file);
         console.log(userData);
 
-        setData({
-          likes: userData?.favorites?.videos?.length,
-          videos: userData?.history?.videos?.length,
-        })
+        if(!userData) {
+          // TODO: show error
+          return;
+        }
+
+        setUserData(userData);
+        Router.push('/test');
       })
     }
   })
@@ -43,9 +49,7 @@ export default function DragAndDropInput() {
         <Typography variant="body1" color="textPrimary">
           {t('uploadButtonText')}
         </Typography>
-        {JSON.stringify(data)}
       </div>
-      
     </>
   )
 }
