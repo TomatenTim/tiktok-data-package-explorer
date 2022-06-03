@@ -29,36 +29,44 @@ const readUserDataFromZipJson = async (zip: jszip) => {
     userData.favorites = {};
 
   // favorites.videos
-  userData.favorites.videos = tikTokUserData['Activity']['Like List']['ItemFavoriteList'].map((video: any) => {
-    return {
-      url: video.VideoLink,
-      date: new Date(video.Date)
-    }
-  });
+  if (tikTokUserData['Activity']['Like List']['ItemFavoriteList']) {
+    userData.favorites.videos = tikTokUserData['Activity']['Like List']['ItemFavoriteList'].map((video: any) => {
+      return {
+        url: video.VideoLink,
+        date: new Date(video.Date)
+      }
+    });
+  }
 
   // favorites.effects
-  userData.favorites.effects = tikTokUserData['Activity']['Favorite Effects']['FavoriteEffectsList'].map((effect: any) => {
-    return {
-      url: effect.EffectLink,
-      date: new Date(effect.Date)
-    }
-  });
+  if (tikTokUserData['Activity']['Favorite Effects']['FavoriteEffectsList']) {
+    userData.favorites.effects = tikTokUserData['Activity']['Favorite Effects']['FavoriteEffectsList'].map((effect: any) => {
+      return {
+        url: effect.EffectLink,
+        date: new Date(effect.Date)
+      }
+    });
+  }
 
   // favorites.hashtags
-  userData.favorites.hashtags = tikTokUserData['Activity']['Favorite Hashtags']['FavoriteHashtagList'].map((hashtag: any) => {
-    return {
-      url: hashtag.Link,
-      date: new Date(hashtag.Date)
-    }
-  });
+  if (tikTokUserData['Activity']['Favorite Hashtags']['FavoriteHashtagList']) {
+    userData.favorites.hashtags = tikTokUserData['Activity']['Favorite Hashtags']['FavoriteHashtagList'].map((hashtag: any) => {
+      return {
+        url: hashtag.Link,
+        date: new Date(hashtag.Date)
+      }
+    });
+  }
 
   // favorites.sounds
-  userData.favorites.sounds = tikTokUserData['Activity']['Favorite Sounds']['FavoriteSoundList'].map((sound: any) => {
-    return {
-      url: sound.Link,
-      date: new Date(sound.Date)
-    }
-  });
+  if (tikTokUserData['Activity']['Favorite Sounds']['FavoriteSoundList']) {
+    userData.favorites.sounds = tikTokUserData['Activity']['Favorite Sounds']['FavoriteSoundList'].map((sound: any) => {
+      return {
+        url: sound.Link,
+        date: new Date(sound.Date)
+      }
+    });
+  }
 
   // ====================== HISTORY ====================== //
 
@@ -66,44 +74,50 @@ const readUserDataFromZipJson = async (zip: jszip) => {
   if (!userData.history)
     userData.history = {};
 
-  userData.history.videos = tikTokUserData['Activity']['Video Browsing History']['VideoList'].map((video: any) => {
-    return {
-      url: video.VideoLink,
-      date: new Date(video.Date)
-    }
-  });
+  if (tikTokUserData['Activity']['Video Browsing History']['VideoList']) {
+    userData.history.videos = tikTokUserData['Activity']['Video Browsing History']['VideoList'].map((video: any) => {
+      return {
+        url: video.VideoLink,
+        date: new Date(video.Date)
+      }
+    });
+  }
 
   // history.logins
-  userData.history.logins = tikTokUserData['Activity']['Login History']['LoginHistoryList'].map((login: any) => {
-    return {
-      date: new Date(login.Date.replace(' UTC', '')),
-      ip: login.IP,
-      deviceModel: login.DeviceModel,
-      deviceOS: login.DeviceSystem,
-      networkType: login.NetworkType,
-      carrier: login.Carrier
-
-
-    }
-  });
+  if (tikTokUserData['Activity']['Login History']['LoginHistoryList']) {
+    userData.history.logins = tikTokUserData['Activity']['Login History']['LoginHistoryList'].map((login: any) => {
+      return {
+        date: new Date(login.Date.replace(' UTC', '')),
+        ip: login.IP,
+        deviceModel: login.DeviceModel,
+        deviceOS: login.DeviceSystem,
+        networkType: login.NetworkType,
+        carrier: login.Carrier
+      }
+    });
+  }
 
   // history.searches
-  userData.history.searches = tikTokUserData['Activity']['Search History']['SearchList'].map((search: any) => {
-    return {
-      text: search.SearchTerm,
-      date: new Date(search.Date)
-    }
-  });
+  if (tikTokUserData['Activity']['Search History']['SearchList']) {
+    userData.history.searches = tikTokUserData['Activity']['Search History']['SearchList'].map((search: any) => {
+      return {
+        text: search.SearchTerm,
+        date: new Date(search.Date)
+      }
+    });
+  }
 
   // history.shares
-  userData.history.shares = tikTokUserData['Activity']['Share History']['ShareHistoryList'].map((share: any) => {
-    return {
-      date: new Date(share.Date),
-      url: share.Link,
-      type: share.SharedContent,
-      method: share.Method
-    }
-  });
+  if (tikTokUserData['Activity']['Share History']['ShareHistoryList']) {
+    userData.history.shares = tikTokUserData['Activity']['Share History']['ShareHistoryList'].map((share: any) => {
+      return {
+        date: new Date(share.Date),
+        url: share.Link,
+        type: share.SharedContent,
+        method: share.Method
+      }
+    });
+  }
 
   // TODO: history.purchases
 
@@ -111,19 +125,23 @@ const readUserDataFromZipJson = async (zip: jszip) => {
   // ====================== FOLLOWER / FOLLOWING ====================== //
 
 
-  userData.follower = tikTokUserData['Activity']['Follower List']['FansList'].map((follower: any) => {
-    return {
-      username: follower.UserName,
-      date: new Date(follower.Date),
-    }
-  });
+  if (tikTokUserData['Activity']['Follower List']['FansList']) {
+    userData.follower = tikTokUserData['Activity']['Follower List']['FansList'].map((follower: any) => {
+      return {
+        username: follower.UserName,
+        date: new Date(follower.Date),
+      }
+    });
+  }
 
-  userData.following = tikTokUserData['Activity']['Following List']['Following'].map((following: any) => {
-    return {
-      username: following.UserName,
-      date: new Date(following.Date),
-    }
-  });
+  if (tikTokUserData['Activity']['Following List']['Following']) {
+    userData.following = tikTokUserData['Activity']['Following List']['Following'].map((following: any) => {
+      return {
+        username: following.UserName,
+        date: new Date(following.Date),
+      }
+    });
+  }
 
 
 
@@ -155,28 +173,31 @@ const readUserDataFromZipJson = async (zip: jszip) => {
 
   // ====================== COMMENTS ====================== //
 
-  userData.comments = tikTokUserData['Comment']['Comments']['CommentsList'].map((comment: any) => {
-    return {
-      text: comment.Comment,
-      date: new Date(comment.Date),
-    }
-  });
+  if (tikTokUserData['Comment']['Comments']['CommentsList']) {
+    userData.comments = tikTokUserData['Comment']['Comments']['CommentsList'].map((comment: any) => {
+      return {
+        text: comment.Comment,
+        date: new Date(comment.Date),
+      }
+    });
+  }
 
   // ====================== CHATS ====================== //
 
-  Object.keys(tikTokUserData['Direct Messages']['Chat History']['ChatHistory']).forEach((key: string) => {
-    const chat = tikTokUserData['Direct Messages']['Chat History']['ChatHistory'][key]
-
-    userData.chats?.push({
-      username: key.replace('Chat History with ', '').substring(0, -2),
-      messages: chat.map((message: any) => {
-        return {
-          text: message.Message,
-          date: new Date(message.Date),
-        }
-      })
+  if (tikTokUserData['Direct Messages']['Chat History']['ChatHistory']) {
+    Object.keys(tikTokUserData['Direct Messages']['Chat History']['ChatHistory']).forEach((key: string) => {
+      const chat = tikTokUserData['Direct Messages']['Chat History']['ChatHistory'][key]
+      userData.chats?.push({
+        username: key.replace('Chat History with ', '').substring(0, -2),
+        messages: chat.map((message: any) => {
+          return {
+            text: message.Message,
+            date: new Date(message.Date),
+          }
+        })
+      });
     });
-  });
+  }
 
 
   // ====================== PROFILE ====================== //
