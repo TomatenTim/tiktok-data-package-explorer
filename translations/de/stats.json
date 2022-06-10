@@ -1,0 +1,9 @@
+{
+  "profile": {
+    "username": "Benutzername",
+    "birthday": "Geburtsdatum",
+    "email": "Email",
+    "phoneNumber": "Handynummer"
+  },
+  "clickToReveal": "zum Anzeigen klicken"
+}
