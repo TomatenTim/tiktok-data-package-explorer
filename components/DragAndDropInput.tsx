@@ -35,7 +35,7 @@ export default function DragAndDropInput() {
         }
 
         setUserData(userData);
-        Router.push('/test');
+        Router.push('/stats');
       })
     }
   })
